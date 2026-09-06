@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: api-gateway
+  config:
+    import: "optional:configserver:http://localhost:8888"
+  cloud:
+    config:
+      fail-fast: false
+      retry:
+        max-attempts: 5
+        initial-interval: 2000
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+jwt:
+  secret: ${JWT_SECRET}
+  issuer: ${JWT_ISSUER:ecommerce-auth-service}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
