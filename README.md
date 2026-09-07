@@ -1,7 +1,7 @@
 # ShopSphere — Java Spring Boot Microservices E-Commerce Platform
 
 A portfolio-grade, full-stack e-commerce application built as independently
-deployable Spring Boot microservices with a React frontend — **no Docker,
+deployable Spring Boot microservices with a React frontend — ** Docker,
 no Kubernetes**. Everything runs directly on a local Windows (or any)
 machine against locally installed MySQL, Kafka, and Redis.
 
@@ -183,7 +183,7 @@ Eureka, Config Server, API Gateway.
 | `ecommerce_payment` | payment-service |
 | `ecommerce_notification` | notification-service |
 
-All connect to `localhost:3306`, user `root`, password `2003`,
+All connect to `localhost:3306`, user `root`, password `root`,
 `createDatabaseIfNotExist=true` — no manual `CREATE DATABASE` needed. No
 service ever queries another service's database; cross-service reads go
 through OpenFeign, cross-service events go through Kafka.
@@ -284,14 +284,14 @@ Install MySQL locally, then confirm you can connect:
 
 ```bash
 mysql -u root -p
-# password: 2003
+# password: root
 ```
 
 No manual schema creation needed — every service connects with
 `createDatabaseIfNotExist=true` and `ddl-auto: update`, so each database
 and its tables are created automatically on first run.
 
-## 11. Kafka Setup (Windows, no Docker)
+## 11. Kafka Setup (Windows, Docker)
 
 1. Download Kafka from https://kafka.apache.org/downloads and extract it, e.g. to `C:\kafka`.
 2. Start Zookeeper (skip if using Kafka in KRaft mode):
@@ -310,7 +310,7 @@ and its tables are created automatically on first run.
    .\bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --list
    ```
 
-## 12. Redis Setup (Windows, no Docker)
+## 12. Redis Setup (Windows, Docker)
 
 Redis doesn't officially support Windows, but two straightforward options:
 
